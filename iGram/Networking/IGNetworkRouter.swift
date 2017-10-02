@@ -9,14 +9,6 @@
 import Alamofire
 import SwiftyJSON
 
-struct InstagramKeys {
-    static let data = "data"
-    static let nameKey = "full_name"
-    static let userNameKey = "username"
-    static let followingKey = "follows"
-    static let followedByKey = "followed_by"
-}
-
 struct InstagramURL {
     
     static let base = "https://api.instagram.com/v1/"
@@ -37,9 +29,9 @@ struct InstagramURL {
 enum IGRouter: URLRequestConvertible {
     
     // Values
-    case getUserMedia(userId: String, accessToken: String)
+    case getUserMedia(accessToken: String)
     
-    case getUserInfo(token: String)
+    case getUserInfo(accessToken: String)
     
     // Methods
     var method: Alamofire.HTTPMethod {
@@ -69,8 +61,8 @@ enum IGRouter: URLRequestConvertible {
     var path: String {
         switch self {
             
-        case .getUserMedia(let params):
-            return InstagramURL.selfUserMedia+"\(params.accessToken)"
+        case .getUserMedia(let token):
+            return InstagramURL.selfUserMedia+"\(token)"
         
         case .getUserInfo(let token):
             return InstagramURL.getSelfUserUrl(token: token)
@@ -82,7 +74,7 @@ enum IGRouter: URLRequestConvertible {
         
         switch self {
             
-        case .getUserMedia( _, _):
+        case .getUserMedia(_):
             return nil
         case .getUserInfo(_):
             return nil

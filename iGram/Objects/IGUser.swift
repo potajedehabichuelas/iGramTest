@@ -9,6 +9,14 @@
 import UIKit
 import SwiftyJSON
 
+struct InstagramUserKeys {
+    static let data = "data"
+    static let nameKey = "full_name"
+    static let userNameKey = "username"
+    static let followingKey = "follows"
+    static let followedByKey = "followed_by"
+}
+
 class IGUser: NSObject {
 
     var name: String
@@ -28,19 +36,19 @@ class IGUser: NSObject {
         
         self.init()
         
-        if let uName = userDict[InstagramKeys.nameKey].string {
+        if let uName = userDict[InstagramUserKeys.nameKey].string {
             self.name = uName
         }
         
-        if let userN = userDict[InstagramKeys.userNameKey].string {
+        if let userN = userDict[InstagramUserKeys.userNameKey].string {
             self.userName = userN
         }
         
-        if let follows = userDict[InstagramKeys.followingKey].int {
+        if let follows = userDict[InstagramUserKeys.followingKey].int {
             self.following = follows
         }
         
-        if let followedBy = userDict[InstagramKeys.followedByKey].int {
+        if let followedBy = userDict[InstagramUserKeys.followedByKey].int {
             self.followers = followedBy
         }
     }

@@ -15,8 +15,38 @@ class IGNetworkManager: NSObject {
     //Singleton
     static let sharedInstance = IGNetworkManager()
     
-    func getRecentMediaForUser(igUser: String, completion: @escaping (Bool) -> Void) {
+    func getRecentMediaForUser(completion: @escaping ([IGMedia]) -> Void) {
         
+        Alamofire.request(IGRouter.getUserMedia(accessToken: IGSettings.sharedInstance.token)) .responseJSON { response in
+            
+            guard response.result.error == nil else {
+                print("Error requesting User Media")
+                print(response.result.error!)
+                completion([])
+                return
+            }
+            
+            if let response: AnyObject = response.result.value as AnyObject? {
+
+                let jsonMedia = JSON(response)
+                var igMediaArray = [IGMedia]()
+                
+                if let jsonArray = jsonMedia[InstagramMediaKeys.data].array {
+
+                    for mediaDict in jsonArray {
+                        let media = IGMedia(mediaDict: mediaDict)
+                        igMediaArray.append(media)
+                    }
+                }
+                completion(igMediaArray)
+                
+            } else {
+                print("Error parsing Media Objects")
+                completion([])
+            }
+        }
+        
+        debugPrint(request)
     }
     
     func getInstagramLoginUrl() -> URL? {
@@ -30,7 +60,7 @@ class IGNetworkManager: NSObject {
     
     func retrieveSelfUserInfo(completion: @escaping (IGUser?) -> Void) {
         
-        Alamofire.request(IGRouter.getUserInfo(token: IGSettings.sharedInstance.token)) .responseJSON { response in
+        Alamofire.request(IGRouter.getUserInfo(accessToken: IGSettings.sharedInstance.token)) .responseJSON { response in
         
             guard response.result.error == nil else {
                 print("Error requesting user Info")
@@ -42,7 +72,7 @@ class IGNetworkManager: NSObject {
             if let response: AnyObject = response.result.value as AnyObject? {
                 let jsonUser = JSON(response)
                 
-                let user = IGUser(userDict: jsonUser[InstagramKeys.data])
+                let user = IGUser(userDict: jsonUser[InstagramUserKeys.data])
                 IGSettings.sharedInstance.currentUser = user
                 completion(user)
                 

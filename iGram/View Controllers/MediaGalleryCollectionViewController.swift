@@ -26,14 +26,20 @@ class MediaGalleryCollectionViewController: UICollectionViewController, NVActivi
         IGNetworkManager.sharedInstance.retrieveSelfUserInfo(completion: { igUser in
             if let user = igUser {
                 self.navigationItem.title = user.userName.capitalized
-                
-                //Request media
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    //Pacman loading animation is really cool to watch :D
-                    self.stopAnimating()
-                }
             }
+            self.stopLoadingSpinner()
         })
+        
+        IGNetworkManager.sharedInstance.getRecentMediaForUser(completion: { mediaArray in
+            self.stopLoadingSpinner()
+        })
+    }
+    
+    func stopLoadingSpinner() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            //Pacman loading animation is really cool to watch :D
+            self.stopAnimating()
+        }
     }
     
     func presentLoginVc() {
