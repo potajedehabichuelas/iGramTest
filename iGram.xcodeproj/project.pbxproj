@@ -20,6 +20,7 @@
 		33BD01CA1F8281850047132A /* IGLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BD01C91F8281850047132A /* IGLoginViewController.swift */; };
 		33BD01CF1F8283C30047132A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 33BD01CD1F8283C30047132A /* Localizable.strings */; };
 		33BD01D51F82887F0047132A /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BD01D41F82887F0047132A /* R.generated.swift */; };
+		33EF48071F82EB1F00E08295 /* MediaCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EF48061F82EB1F00E08295 /* MediaCollectionViewCell.swift */; };
 		33F283061F82A3D0002E854B /* IGSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F283051F82A3D0002E854B /* IGSettings.swift */; };
 		33F283081F82B642002E854B /* SettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F283071F82B642002E854B /* SettingsTests.swift */; };
 		33F2830A1F82BD21002E854B /* IGUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F283091F82BD21002E854B /* IGUser.swift */; };
@@ -72,6 +73,7 @@
 		33BD01CE1F8283C30047132A /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		33BD01D01F8284250047132A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		33BD01D41F82887F0047132A /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
+		33EF48061F82EB1F00E08295 /* MediaCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaCollectionViewCell.swift; sourceTree = "<group>"; };
 		33F283051F82A3D0002E854B /* IGSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGSettings.swift; sourceTree = "<group>"; };
 		33F283071F82B642002E854B /* SettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTests.swift; sourceTree = "<group>"; };
 		33F283091F82BD21002E854B /* IGUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGUser.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 		3331D21C1F825E110027BA11 /* Other Views */ = {
 			isa = PBXGroup;
 			children = (
+				33EF48061F82EB1F00E08295 /* MediaCollectionViewCell.swift */,
 			);
 			path = "Other Views";
 			sourceTree = "<group>";
@@ -591,6 +594,7 @@
 				33F283061F82A3D0002E854B /* IGSettings.swift in Sources */,
 				33BD01CA1F8281850047132A /* IGLoginViewController.swift in Sources */,
 				3331D1EF1F82566E0027BA11 /* AppDelegate.swift in Sources */,
+				33EF48071F82EB1F00E08295 /* MediaCollectionViewCell.swift in Sources */,
 				33BD01C81F826F470047132A /* IGNetworkRouter.swift in Sources */,
 				33F2830A1F82BD21002E854B /* IGUser.swift in Sources */,
 				33BD01D51F82887F0047132A /* R.generated.swift in Sources */,

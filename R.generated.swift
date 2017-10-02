@@ -41,8 +41,11 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.reuseIdentifier` struct is generated, and contains static references to 0 reuse identifiers.
+  /// This `R.reuseIdentifier` struct is generated, and contains static references to 1 reuse identifiers.
   struct reuseIdentifier {
+    /// Reuse identifier `MediaCellId`.
+    static let mediaCellId: Rswift.ReuseIdentifier<MediaCollectionViewCell> = Rswift.ReuseIdentifier(identifier: "MediaCellId")
+    
     fileprivate init() {}
   }
   

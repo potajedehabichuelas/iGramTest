@@ -8,16 +8,18 @@
 
 import UIKit
 import NVActivityIndicatorView
-
-private let reuseIdentifier = "Cell"
+import SDWebImage
 
 class MediaGalleryCollectionViewController: UICollectionViewController, NVActivityIndicatorViewable {
 
+    var media = [IGMedia]() {
+        didSet {
+            self.collectionView?.reloadData()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         NVActivityIndicatorView.DEFAULT_TYPE = .pacman
         startAnimating()
@@ -32,7 +34,7 @@ class MediaGalleryCollectionViewController: UICollectionViewController, NVActivi
         
         IGNetworkManager.sharedInstance.getRecentMediaForUser(completion: { mediaObjects in
             if let mediaArray = mediaObjects {
-                
+                self.media = mediaArray
             }
             self.stopLoadingSpinner()
         })
@@ -70,53 +72,30 @@ class MediaGalleryCollectionViewController: UICollectionViewController, NVActivi
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return 0
+        return self.media.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-    
-        // Configure the cell
-    
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.mediaCellId.identifier, for: indexPath) as! MediaCollectionViewCell
+        
+        let mediaItem = media[indexPath.row]
+        
+        cell.activityIndicator.startAnimating()
+        cell.thumbnail.image = nil
+        
+        guard let imageUrl = URL(string: mediaItem.thumbnailUrl) else { return cell }
+        
+        cell.thumbnail.sd_setImage(with: imageUrl, completed: { (image, error, cacheType, imageURL) in
+            cell.activityIndicator.stopAnimating()
+        })
+
         return cell
     }
-
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
 
 }
