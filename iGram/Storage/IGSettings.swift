@@ -17,6 +17,8 @@ class IGSettings: NSObject {
     //Singleton
     static let sharedInstance = IGSettings()
     
+    var currentUser: IGUser?
+    
     var token = IGSettings.retrieveSessionToken()
     
     class func getInstagramClientId() -> String {

@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import NVActivityIndicatorView
 
 private let reuseIdentifier = "Cell"
 
-class MediaGalleryCollectionViewController: UICollectionViewController {
+class MediaGalleryCollectionViewController: UICollectionViewController, NVActivityIndicatorViewable {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +19,21 @@ class MediaGalleryCollectionViewController: UICollectionViewController {
         // Register cell classes
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
+        NVActivityIndicatorView.DEFAULT_TYPE = .pacman
+        startAnimating()
+        
+        //Request user info
+        IGNetworkManager.sharedInstance.retrieveSelfUserInfo(completion: { igUser in
+            if let user = igUser {
+                self.navigationItem.title = user.userName.capitalized
+                
+                //Request media
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    //Pacman loading animation is really cool to watch :D
+                    self.stopAnimating()
+                }
+            }
+        })
     }
     
     func presentLoginVc() {

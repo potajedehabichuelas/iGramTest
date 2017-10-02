@@ -9,6 +9,14 @@
 import Alamofire
 import SwiftyJSON
 
+struct InstagramKeys {
+    static let data = "data"
+    static let nameKey = "full_name"
+    static let userNameKey = "username"
+    static let followingKey = "follows"
+    static let followedByKey = "followed_by"
+}
+
 struct InstagramURL {
     
     static let base = "https://api.instagram.com/v1/"
@@ -17,6 +25,10 @@ struct InstagramURL {
     
     static let selfUserMedia = "users/self/media/recent/?access_token="
     
+    static func getSelfUserUrl(token: String) -> String {
+        return "users/self/?access_token=\(token)"
+    }
+    
     static func getLoginUrl(clientId: String) -> String {
         return "https://api.instagram.com/oauth/authorize/?client_id=\(clientId)&redirect_uri=http://www.google.com&response_type=token&scope=basic+public_content"
     }
@@ -24,12 +36,14 @@ struct InstagramURL {
 
 enum IGRouter: URLRequestConvertible {
     
-    
     // Values
     case getUserMedia(userId: String, accessToken: String)
     
+    case getUserInfo(token: String)
+    
     // Methods
     var method: Alamofire.HTTPMethod {
+        
         switch self {
         
             /*
@@ -39,6 +53,15 @@ enum IGRouter: URLRequestConvertible {
              */
         case .getUserMedia:
             return .get
+            
+            /*
+             ** Get User info **
+             * GET https://api.instagram.com/v1/users/self/?access_token=ACCESS-TOKEN
+             * Get information about the owner of the access_token.
+             */
+        case .getUserInfo:
+            return .get
+            
         }
     }
     
@@ -48,13 +71,20 @@ enum IGRouter: URLRequestConvertible {
             
         case .getUserMedia(let params):
             return InstagramURL.selfUserMedia+"\(params.accessToken)"
+        
+        case .getUserInfo(let token):
+            return InstagramURL.getSelfUserUrl(token: token)
         }
     }
     
     // endpoint parameters
     var parameters: Parameters? {
+        
         switch self {
+            
         case .getUserMedia( _, _):
+            return nil
+        case .getUserInfo(_):
             return nil
         }
     }
@@ -66,8 +96,11 @@ enum IGRouter: URLRequestConvertible {
         urlRequest.httpMethod = self.method.rawValue
         
         switch self {
-            case .getUserMedia(_):
-            //Set the headers
+            
+        case .getUserMedia(_):
+            return try Alamofire.JSONEncoding.default.encode(urlRequest, with:nil)
+            
+        case .getUserInfo(_):
             return try Alamofire.JSONEncoding.default.encode(urlRequest, with:nil)
         }
     }

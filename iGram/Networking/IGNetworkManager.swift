@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import SwiftyJSON
+import Alamofire
 
 class IGNetworkManager: NSObject {
     
@@ -26,6 +28,33 @@ class IGNetworkManager: NSObject {
         return URL(string: InstagramURL.getLoginUrl(clientId: clientId))
     }
     
+    func retrieveSelfUserInfo(completion: @escaping (IGUser?) -> Void) {
+        
+        Alamofire.request(IGRouter.getUserInfo(token: IGSettings.sharedInstance.token)) .responseJSON { response in
+        
+            guard response.result.error == nil else {
+                print("Error requesting user Info")
+                print(response.result.error!)
+                completion(nil)
+                return
+            }
+            
+            if let response: AnyObject = response.result.value as AnyObject? {
+                let jsonUser = JSON(response)
+                
+                let user = IGUser(userDict: jsonUser[InstagramKeys.data])
+                IGSettings.sharedInstance.currentUser = user
+                completion(user)
+                
+            } else {
+                print("Error parsing IGUser")
+                completion(nil)
+            }
+        }
+        
+        debugPrint(request)
+    }
+    
     func retrieveTokenFromRedirectUrl(urlString: String) -> Bool {
         
         //Retrieve token from redirect url
@@ -33,7 +62,6 @@ class IGNetworkManager: NSObject {
         
         //If we found a token, and we can save it
         if token != "", IGSettings.sharedInstance.saveSessionToken(newToken: token) == true {
-            print(token)
             return true
         }
         
