@@ -14,6 +14,7 @@ target 'iGram' do
   pod 'R.swift'
   pod 'SDWebImage'
   pod 'IGListKit'
+  pod 'KeychainAccess'
 
   target 'iGramTests' do
     inherit! :search_paths

@@ -19,9 +19,12 @@ class IGLoginViewController: UIViewController, UIWebViewDelegate {
         
         let clientId = "fc8ddf533e5442ffa9e1334f767723d4"
         
-        guard let loginUrl = URL(string: InstagramURL.getLoginUrl(clientId: clientId)) else { return }
-        
-        self.loginWebView.loadRequest(URLRequest(url: loginUrl))
+        if IGSettings.sharedInstance.token != "" {
+            self.authenticationSuccess()
+        } else {
+            guard let loginUrl = URL(string: InstagramURL.getLoginUrl(clientId: clientId)) else { return }
+            self.loginWebView.loadRequest(URLRequest(url: loginUrl))
+        }
     }
     
     override func didReceiveMemoryWarning() {

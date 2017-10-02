@@ -10,8 +10,6 @@ import UIKit
 
 class IGNetworkManager: NSObject {
     
-    var token: String = ""
-    
     //Singleton
     static let sharedInstance = IGNetworkManager()
     
@@ -24,12 +22,9 @@ class IGNetworkManager: NSObject {
         //Retrieve token from redirect url
         let token = urlString.replacingOccurrences(of: InstagramURL.redirectToken, with: "")
         
-        if token != "" {
+        //If we found a token, and we can save it
+        if token != "", IGSettings.sharedInstance.saveSessionToken(newToken: token) == true {
             print(token)
-            //Save token
-            self.token = token
-            
-
             return true
         }
         
