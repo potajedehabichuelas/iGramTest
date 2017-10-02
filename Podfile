@@ -13,8 +13,8 @@ target 'iGram' do
   pod 'NVActivityIndicatorView'
   pod 'R.swift'
   pod 'SDWebImage'
-  pod 'IGListKit'
   pod 'KeychainAccess'
+  pod 'Agrume'
 
   target 'iGramTests' do
     inherit! :search_paths

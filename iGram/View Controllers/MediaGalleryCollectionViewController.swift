@@ -9,6 +9,7 @@
 import UIKit
 import NVActivityIndicatorView
 import SDWebImage
+import Agrume
 
 class MediaGalleryCollectionViewController: UICollectionViewController, NVActivityIndicatorViewable {
 
@@ -83,6 +84,22 @@ class MediaGalleryCollectionViewController: UICollectionViewController, NVActivi
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.media.count
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+                
+        let urlArray = self.media.map({ (item: IGMedia) -> URL in
+            URL(string:item.highResUrl)!
+        })
+        
+        let agrume = Agrume(imageUrls: urlArray, startIndex: indexPath.row, backgroundBlurStyle: .light, backgroundColor: nil)
+        agrume.didScroll = { [unowned self] index in
+            self.collectionView?.scrollToItem(at: IndexPath(row: index, section: 0),
+                                              at: [],
+                                              animated: false)
+        }
+        agrume.showFrom(self)
+    
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
