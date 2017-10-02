@@ -14,14 +14,17 @@ class MediaGalleryCollectionViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
+    
         // Register cell classes
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
-        // Do any additional setup after loading the view.
+    }
+    
+    func presentLoginVc() {
+        
+        let storyboard = R.storyboard.main()
+        let vc = storyboard.instantiateViewController(withIdentifier: R.storyboard.main.igLoginVC.identifier) as! IGLoginViewController
+        self.present(vc, animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {

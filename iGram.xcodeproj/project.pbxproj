@@ -15,6 +15,11 @@
 		3331D2041F82566E0027BA11 /* iGramTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3331D2031F82566E0027BA11 /* iGramTests.swift */; };
 		3331D20F1F82566E0027BA11 /* iGramUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3331D20E1F82566E0027BA11 /* iGramUITests.swift */; };
 		33BD01C31F8267CC0047132A /* MediaGalleryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BD01C21F8267CC0047132A /* MediaGalleryCollectionViewController.swift */; };
+		33BD01C61F826A370047132A /* IGNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BD01C51F826A370047132A /* IGNetworkManager.swift */; };
+		33BD01C81F826F470047132A /* IGNetworkRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BD01C71F826F470047132A /* IGNetworkRouter.swift */; };
+		33BD01CA1F8281850047132A /* IGLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BD01C91F8281850047132A /* IGLoginViewController.swift */; };
+		33BD01CF1F8283C30047132A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 33BD01CD1F8283C30047132A /* Localizable.strings */; };
+		33BD01D51F82887F0047132A /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BD01D41F82887F0047132A /* R.generated.swift */; };
 		B0609123CA8F2105B227F406 /* Pods_iGramUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 287670DF2F18AACA9476B04F /* Pods_iGramUITests.framework */; };
 		F20BFBC77196FC8E696AD7F4 /* Pods_iGramTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1E76D7E6431813AA50DA6E /* Pods_iGramTests.framework */; };
 /* End PBXBuildFile section */
@@ -52,6 +57,12 @@
 		3331D20E1F82566E0027BA11 /* iGramUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iGramUITests.swift; sourceTree = "<group>"; };
 		3331D2101F82566E0027BA11 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		33BD01C21F8267CC0047132A /* MediaGalleryCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaGalleryCollectionViewController.swift; sourceTree = "<group>"; };
+		33BD01C51F826A370047132A /* IGNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGNetworkManager.swift; sourceTree = "<group>"; };
+		33BD01C71F826F470047132A /* IGNetworkRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGNetworkRouter.swift; sourceTree = "<group>"; };
+		33BD01C91F8281850047132A /* IGLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGLoginViewController.swift; sourceTree = "<group>"; };
+		33BD01CE1F8283C30047132A /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		33BD01D01F8284250047132A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		33BD01D41F82887F0047132A /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		367537E083FC9EE32FC1A353 /* Pods-iGramTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iGramTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iGramTests/Pods-iGramTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6C80681AFC4C27FF026EC8BC /* Pods-iGram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iGram.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iGram/Pods-iGram.debug.xcconfig"; sourceTree = "<group>"; };
 		775CD0CB5E37C4457E021C7D /* Pods-iGram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iGram.release.xcconfig"; path = "Pods/Target Support Files/Pods-iGram/Pods-iGram.release.xcconfig"; sourceTree = "<group>"; };
@@ -124,6 +135,8 @@
 		3331D1ED1F82566E0027BA11 /* iGram */ = {
 			isa = PBXGroup;
 			children = (
+				33BD01D41F82887F0047132A /* R.generated.swift */,
+				33BD01C41F8269DA0047132A /* Networking */,
 				3331D2221F825E110027BA11 /* Objects */,
 				3331D21C1F825E110027BA11 /* Other Views */,
 				3331D21D1F825E110027BA11 /* Settings */,
@@ -132,6 +145,7 @@
 				3331D21E1F825E110027BA11 /* View Controllers */,
 				3331D1EE1F82566E0027BA11 /* AppDelegate.swift */,
 				3331D1F21F82566E0027BA11 /* Main.storyboard */,
+				33BD01CD1F8283C30047132A /* Localizable.strings */,
 				3331D1F51F82566E0027BA11 /* Assets.xcassets */,
 				3331D1F71F82566E0027BA11 /* LaunchScreen.storyboard */,
 				3331D1FA1F82566E0027BA11 /* Info.plist */,
@@ -175,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				33BD01C21F8267CC0047132A /* MediaGalleryCollectionViewController.swift */,
+				33BD01C91F8281850047132A /* IGLoginViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -200,6 +215,15 @@
 			path = Objects;
 			sourceTree = "<group>";
 		};
+		33BD01C41F8269DA0047132A /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				33BD01C51F826A370047132A /* IGNetworkManager.swift */,
+				33BD01C71F826F470047132A /* IGNetworkRouter.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		C53DFB7AFD8A01377CE2B2DD /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -221,6 +245,7 @@
 			buildConfigurationList = 3331D2131F82566E0027BA11 /* Build configuration list for PBXNativeTarget "iGram" */;
 			buildPhases = (
 				45ADF167796747344F357692 /* [CP] Check Pods Manifest.lock */,
+				33BD01D31F8287A10047132A /* ShellScript */,
 				3331D1E71F82566E0027BA11 /* Sources */,
 				3331D1E81F82566E0027BA11 /* Frameworks */,
 				3331D1E91F82566E0027BA11 /* Resources */,
@@ -330,6 +355,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3331D1F91F82566E0027BA11 /* LaunchScreen.storyboard in Resources */,
+				33BD01CF1F8283C30047132A /* Localizable.strings in Resources */,
 				3331D1F61F82566E0027BA11 /* Assets.xcassets in Resources */,
 				3331D1F41F82566E0027BA11 /* Main.storyboard in Resources */,
 			);
@@ -366,6 +392,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iGramUITests/Pods-iGramUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		33BD01D31F8287A10047132A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT\"";
 		};
 		45ADF167796747344F357692 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -410,6 +449,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
 				"${BUILT_PRODUCTS_DIR}/HexColors/HexColors.framework",
+				"${BUILT_PRODUCTS_DIR}/IGListKit/IGListKit.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/PPTopMostController/PPTopMostController.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
@@ -422,6 +462,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hero.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HexColors.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IGListKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PPTopMostController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
@@ -523,7 +564,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				33BD01C31F8267CC0047132A /* MediaGalleryCollectionViewController.swift in Sources */,
+				33BD01C61F826A370047132A /* IGNetworkManager.swift in Sources */,
+				33BD01CA1F8281850047132A /* IGLoginViewController.swift in Sources */,
 				3331D1EF1F82566E0027BA11 /* AppDelegate.swift in Sources */,
+				33BD01C81F826F470047132A /* IGNetworkRouter.swift in Sources */,
+				33BD01D51F82887F0047132A /* R.generated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -573,6 +618,15 @@
 				3331D1F81F82566E0027BA11 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		33BD01CD1F8283C30047132A /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				33BD01CE1F8283C30047132A /* Base */,
+				33BD01D01F8284250047132A /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
