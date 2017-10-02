@@ -12,6 +12,9 @@ PODS:
   - RMessage (2.1.5):
     - HexColors (~> 4.0)
     - PPTopMostController
+  - SDWebImage (4.1.0):
+    - SDWebImage/Core (= 4.1.0)
+  - SDWebImage/Core (4.1.0)
   - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
@@ -20,6 +23,7 @@ DEPENDENCIES:
   - NVActivityIndicatorView
   - R.swift
   - RMessage
+  - SDWebImage
   - SwiftyJSON
 
 SPEC CHECKSUMS:
@@ -31,8 +35,9 @@ SPEC CHECKSUMS:
   R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
   R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
   RMessage: 31d44bd26a8f353f987d2e7194f3e9ffb203cbf2
+  SDWebImage: 0e435c14e402a6730315a0fb79f95e68654d55a4
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: a7340e0d63a1473f149b74843acbce590889ebc9
+PODFILE CHECKSUM: 14a5aa0a7370b5e0a34ed0eef4683b896a41bebc
 
 COCOAPODS: 1.3.1

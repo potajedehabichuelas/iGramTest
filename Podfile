@@ -12,6 +12,7 @@ target 'iGram' do
   pod 'RMessage'
   pod 'NVActivityIndicatorView'
   pod 'R.swift'
+  pod 'SDWebImage'
 
   target 'iGramTests' do
     inherit! :search_paths
