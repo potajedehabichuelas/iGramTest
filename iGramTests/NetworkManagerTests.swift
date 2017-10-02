@@ -28,7 +28,7 @@ class NetworkManagerTests: XCTestCase {
         
         IGNetworkManager.sharedInstance.getRecentMediaForUser(completion: { mediaObjects in
             
-            XCTAssertNil(mediaObjects)
+            XCTAssertNotNil(mediaObjects)
             if let mediaArray = mediaObjects {
                 XCTAssertGreaterThanOrEqual(mediaArray.count, 0)
             }
