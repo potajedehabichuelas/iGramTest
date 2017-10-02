@@ -13,4 +13,8 @@ class MediaCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var activityIndicator: NVActivityIndicatorView!
     @IBOutlet weak var thumbnail: UIImageView!
+    
+    override func awakeFromNib() {
+        self.activityIndicator.type = .ballZigZagDeflect
+    }
 }

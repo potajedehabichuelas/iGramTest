@@ -18,6 +18,8 @@ class MediaGalleryCollectionViewController: UICollectionViewController, NVActivi
         }
     }
     
+    var maxLikes = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -35,6 +37,9 @@ class MediaGalleryCollectionViewController: UICollectionViewController, NVActivi
         IGNetworkManager.sharedInstance.getRecentMediaForUser(completion: { mediaObjects in
             if let mediaArray = mediaObjects {
                 self.media = mediaArray
+                
+                //Set max of likes to make a cool effect :D
+                self.maxLikes = self.media.map{ $0.likes }.max() ?? 0
             }
             self.stopLoadingSpinner()
         })
@@ -83,11 +88,17 @@ class MediaGalleryCollectionViewController: UICollectionViewController, NVActivi
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.mediaCellId.identifier, for: indexPath) as! MediaCollectionViewCell
+        //Reset values
+        cell.thumbnail.image = nil
+        cell.layer.borderWidth = 0
         
         let mediaItem = media[indexPath.row]
-        
+    
         cell.activityIndicator.startAnimating()
-        cell.thumbnail.image = nil
+        
+        //Draw a cool border as thick as how much instagramers liked that pic
+        cell.layer.borderWidth = (CGFloat(mediaItem.likes) / CGFloat(self.maxLikes)) * 4 
+        cell.layer.borderColor = UIColor(red: 255/255, green: 77/255, blue: 77/255, alpha: 1.0).cgColor
         
         guard let imageUrl = URL(string: mediaItem.thumbnailUrl) else { return cell }
         
