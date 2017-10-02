@@ -17,12 +17,11 @@ class IGLoginViewController: UIViewController, UIWebViewDelegate {
         
         self.loginWebView.scrollView.isScrollEnabled = false;
         
-        let clientId = "fc8ddf533e5442ffa9e1334f767723d4"
-        
+
         if IGSettings.sharedInstance.token != "" {
             self.authenticationSuccess()
         } else {
-            guard let loginUrl = URL(string: InstagramURL.getLoginUrl(clientId: clientId)) else { return }
+            guard let loginUrl = IGNetworkManager.sharedInstance.getInstagramLoginUrl() else { return }
             self.loginWebView.loadRequest(URLRequest(url: loginUrl))
         }
     }
@@ -68,10 +67,11 @@ class IGLoginViewController: UIViewController, UIWebViewDelegate {
     func webViewDidFinishLoad(_ webView: UIWebView) {
         
         if let requestUrl = webView.request?.mainDocumentURL?.absoluteString, (requestUrl.range(of: InstagramURL.redirectToken) != nil) {
-            IGNetworkManager.sharedInstance.retrieveTokenFromRedirectUrl(urlString: requestUrl)
-            //Do not load and dismiss the VC
-            webView.isHidden = true;
-            self.authenticationSuccess();
+            if IGNetworkManager.sharedInstance.retrieveTokenFromRedirectUrl(urlString: requestUrl) {
+                //Do not load and dismiss the VC
+                webView.isHidden = true;
+                self.authenticationSuccess();
+            }
         }
     }
     

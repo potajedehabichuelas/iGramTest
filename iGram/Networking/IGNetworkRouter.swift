@@ -18,7 +18,7 @@ struct InstagramURL {
     static let selfUserMedia = "users/self/media/recent/?access_token="
     
     static func getLoginUrl(clientId: String) -> String {
-        return "https://api.instagram.com/oauth/authorize/?client_id=\(clientId)&redirect_uri=http://www.google.com&response_type=token&scope=basic+likes+follower_list+relationships+public_content"
+        return "https://api.instagram.com/oauth/authorize/?client_id=\(clientId)&redirect_uri=http://www.google.com&response_type=token&scope=basic+public_content"
     }
 }
 
@@ -37,7 +37,6 @@ enum IGRouter: URLRequestConvertible {
              * GET https://api.instagram.com/v1/users/self/media/recent/?access_token=ACCESS-TOKEN
              * Get the most recent media published by the owner of the access_token.
              */
-            
         case .getUserMedia:
             return .get
         }

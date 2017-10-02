@@ -9,6 +9,9 @@ import UIKit
 
 import KeychainAccess
 
+private let sessionTokenKey = "sessionToken"
+private let instagramClientId = "InstagramClientId"
+
 class IGSettings: NSObject {
 
     //Singleton
@@ -16,11 +19,24 @@ class IGSettings: NSObject {
     
     var token = IGSettings.retrieveSessionToken()
     
+    class func getInstagramClientId() -> String {
+        //Property clientId is stored in Plist.
+        if let path = Bundle.main.path(forResource: "Info", ofType: "plist") {
+
+            if let dict = NSDictionary(contentsOfFile: path), let clientId = dict[instagramClientId] as? String  {
+                return clientId
+            }
+        }
+        return ""
+    }
+    
     private class func retrieveSessionToken() -> String {
         
-        let keychain = Keychain(service: "com.genius.iGram")
+        guard let bundleId = Bundle.main.bundleIdentifier else { return "" }
         
-        if let savedToken = keychain["sessionToken"] {
+        let keychain = Keychain(service: bundleId)
+        
+        if let savedToken = keychain[sessionTokenKey] {
             return savedToken
         } else {
             return ""
@@ -29,10 +45,12 @@ class IGSettings: NSObject {
     
     func saveSessionToken(newToken: String) -> Bool {
         
-        let keychain = Keychain(service: "com.genius.iGram")
+        guard let bundleId = Bundle.main.bundleIdentifier else { return false }
+        
+        let keychain = Keychain(service: bundleId)
         
         do {
-            try keychain.set(newToken, key: "sessionToken")
+            try keychain.set(newToken, key: sessionTokenKey)
             self.token = newToken
             
             return true

@@ -17,6 +17,15 @@ class IGNetworkManager: NSObject {
         
     }
     
+    func getInstagramLoginUrl() -> URL? {
+        
+        let clientId = IGSettings.getInstagramClientId()
+        
+        guard clientId != ""  else { return nil }
+        
+        return URL(string: InstagramURL.getLoginUrl(clientId: clientId))
+    }
+    
     func retrieveTokenFromRedirectUrl(urlString: String) -> Bool {
         
         //Retrieve token from redirect url
