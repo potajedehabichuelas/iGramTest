@@ -15,6 +15,7 @@ struct InstagramUserKeys {
     static let userNameKey = "username"
     static let followingKey = "follows"
     static let followedByKey = "followed_by"
+    static let countsKey = "counts"
 }
 
 class IGUser: NSObject {
@@ -44,11 +45,11 @@ class IGUser: NSObject {
             self.userName = userN
         }
         
-        if let follows = userDict[InstagramUserKeys.followingKey].int {
+        if let follows = userDict[InstagramUserKeys.countsKey][InstagramUserKeys.followingKey].int {
             self.following = follows
         }
         
-        if let followedBy = userDict[InstagramUserKeys.followedByKey].int {
+        if let followedBy = userDict[InstagramUserKeys.countsKey][InstagramUserKeys.followedByKey].int {
             self.followers = followedBy
         }
     }

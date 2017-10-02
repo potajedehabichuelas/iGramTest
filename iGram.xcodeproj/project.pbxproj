@@ -24,6 +24,10 @@
 		33F283081F82B642002E854B /* SettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F283071F82B642002E854B /* SettingsTests.swift */; };
 		33F2830A1F82BD21002E854B /* IGUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F283091F82BD21002E854B /* IGUser.swift */; };
 		33F2830C1F82CC07002E854B /* IGMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F2830B1F82CC07002E854B /* IGMedia.swift */; };
+		33F2830E1F82D6FA002E854B /* IGUserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F2830D1F82D6FA002E854B /* IGUserTests.swift */; };
+		33F283101F82D706002E854B /* IGMediaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F2830F1F82D706002E854B /* IGMediaTests.swift */; };
+		33F283121F82D8F1002E854B /* user.json in Resources */ = {isa = PBXBuildFile; fileRef = 33F283111F82D8F1002E854B /* user.json */; };
+		33F283141F82DB73002E854B /* media.json in Resources */ = {isa = PBXBuildFile; fileRef = 33F283131F82DB73002E854B /* media.json */; };
 		B0609123CA8F2105B227F406 /* Pods_iGramUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 287670DF2F18AACA9476B04F /* Pods_iGramUITests.framework */; };
 		F20BFBC77196FC8E696AD7F4 /* Pods_iGramTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1E76D7E6431813AA50DA6E /* Pods_iGramTests.framework */; };
 /* End PBXBuildFile section */
@@ -71,6 +75,10 @@
 		33F283071F82B642002E854B /* SettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTests.swift; sourceTree = "<group>"; };
 		33F283091F82BD21002E854B /* IGUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGUser.swift; sourceTree = "<group>"; };
 		33F2830B1F82CC07002E854B /* IGMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGMedia.swift; sourceTree = "<group>"; };
+		33F2830D1F82D6FA002E854B /* IGUserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGUserTests.swift; sourceTree = "<group>"; };
+		33F2830F1F82D706002E854B /* IGMediaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGMediaTests.swift; sourceTree = "<group>"; };
+		33F283111F82D8F1002E854B /* user.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = user.json; sourceTree = "<group>"; };
+		33F283131F82DB73002E854B /* media.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = media.json; sourceTree = "<group>"; };
 		367537E083FC9EE32FC1A353 /* Pods-iGramTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iGramTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iGramTests/Pods-iGramTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6C80681AFC4C27FF026EC8BC /* Pods-iGram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iGram.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iGram/Pods-iGram.debug.xcconfig"; sourceTree = "<group>"; };
 		775CD0CB5E37C4457E021C7D /* Pods-iGram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iGram.release.xcconfig"; path = "Pods/Target Support Files/Pods-iGram/Pods-iGram.release.xcconfig"; sourceTree = "<group>"; };
@@ -163,9 +171,13 @@
 		3331D2021F82566E0027BA11 /* iGramTests */ = {
 			isa = PBXGroup;
 			children = (
+				33F2830F1F82D706002E854B /* IGMediaTests.swift */,
+				33F2830D1F82D6FA002E854B /* IGUserTests.swift */,
 				33F283071F82B642002E854B /* SettingsTests.swift */,
 				3331D2031F82566E0027BA11 /* iGramTests.swift */,
 				3331D2051F82566E0027BA11 /* Info.plist */,
+				33F283111F82D8F1002E854B /* user.json */,
+				33F283131F82DB73002E854B /* media.json */,
 			);
 			path = iGramTests;
 			sourceTree = "<group>";
@@ -369,6 +381,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33F283141F82DB73002E854B /* media.json in Resources */,
+				33F283121F82D8F1002E854B /* user.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -585,6 +599,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33F283101F82D706002E854B /* IGMediaTests.swift in Sources */,
+				33F2830E1F82D6FA002E854B /* IGUserTests.swift in Sources */,
 				33F283081F82B642002E854B /* SettingsTests.swift in Sources */,
 				3331D2041F82566E0027BA11 /* iGramTests.swift in Sources */,
 			);

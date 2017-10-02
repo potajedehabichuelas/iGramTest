@@ -15,6 +15,9 @@ struct InstagramMediaKeys {
     static let highResolutionImgKey = "standard_resolution"
     static let likesKey = "likes"
     
+    static let imagesKeys = "images"
+    static let imageUrlKeys = "url"
+    static let countKeys = "count"
     static let captionObjectKey = "caption"
     static let captionObjectTitleKey = "text"
 }
@@ -36,16 +39,16 @@ class IGMedia: NSObject {
     convenience init(mediaDict: JSON) {
         
         self.init()
-        
-        if let mThumbImg = mediaDict[InstagramMediaKeys.thumbnailImgKey].string {
+
+        if let mThumbImg = mediaDict[InstagramMediaKeys.imagesKeys][InstagramMediaKeys.thumbnailImgKey][InstagramMediaKeys.imageUrlKeys].string {
             self.thumbnailUrl = mThumbImg
         }
         
-        if let mHighResImg = mediaDict[InstagramMediaKeys.highResolutionImgKey].string {
+        if let mHighResImg = mediaDict[InstagramMediaKeys.imagesKeys][InstagramMediaKeys.highResolutionImgKey][InstagramMediaKeys.imageUrlKeys].string {
             self.highResUrl = mHighResImg
         }
         
-        if let mLikes = mediaDict[InstagramMediaKeys.likesKey].int {
+        if let mLikes = mediaDict[InstagramMediaKeys.likesKey][InstagramMediaKeys.countKeys].int {
             self.likes = mLikes
         }
         
