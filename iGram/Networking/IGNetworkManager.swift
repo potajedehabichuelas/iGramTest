@@ -28,17 +28,22 @@ class IGNetworkManager: NSObject {
             
             if let response: AnyObject = response.result.value as AnyObject? {
 
-                let jsonMedia = JSON(response)
-                var igMediaArray = [IGMedia]()
-                
-                if let jsonArray = jsonMedia[InstagramMediaKeys.data].array {
-
-                    for mediaDict in jsonArray {
-                        let media = IGMedia(mediaDict: mediaDict)
-                        igMediaArray.append(media)
+                //Just in case 'this' could be somehow heavy
+                DispatchQueue.global(qos: .background).async {
+                    let jsonMedia = JSON(response)
+                    var igMediaArray = [IGMedia]()
+                    
+                    if let jsonArray = jsonMedia[InstagramMediaKeys.data].array {
+                        
+                        for mediaDict in jsonArray {
+                            let media = IGMedia(mediaDict: mediaDict)
+                            igMediaArray.append(media)
+                        }
+                    }
+                    DispatchQueue.main.async {
+                        completion(igMediaArray)
                     }
                 }
-                completion(igMediaArray)
                 
             } else {
                 print("Error parsing Media Objects")
@@ -53,7 +58,7 @@ class IGNetworkManager: NSObject {
         
         let clientId = IGSettings.getInstagramClientId()
         
-        guard clientId != ""  else { return nil }
+        guard clientId != "" else { return nil }
         
         return URL(string: InstagramURL.getLoginUrl(clientId: clientId))
     }

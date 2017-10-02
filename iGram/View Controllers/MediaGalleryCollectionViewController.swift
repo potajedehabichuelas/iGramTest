@@ -87,7 +87,7 @@ class MediaGalleryCollectionViewController: UICollectionViewController, NVActivi
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-                
+        
         let urlArray = self.media.map({ (item: IGMedia) -> URL in
             URL(string:item.highResUrl)!
         })
