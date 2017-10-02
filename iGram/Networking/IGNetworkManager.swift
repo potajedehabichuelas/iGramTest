@@ -15,14 +15,14 @@ class IGNetworkManager: NSObject {
     //Singleton
     static let sharedInstance = IGNetworkManager()
     
-    func getRecentMediaForUser(completion: @escaping ([IGMedia]) -> Void) {
+    func getRecentMediaForUser(completion: @escaping ([IGMedia]?) -> Void) {
         
         Alamofire.request(IGRouter.getUserMedia(accessToken: IGSettings.sharedInstance.token)) .responseJSON { response in
             
             guard response.result.error == nil else {
                 print("Error requesting User Media")
                 print(response.result.error!)
-                completion([])
+                completion(nil)
                 return
             }
             
@@ -42,7 +42,7 @@ class IGNetworkManager: NSObject {
                 
             } else {
                 print("Error parsing Media Objects")
-                completion([])
+                completion(nil)
             }
         }
         

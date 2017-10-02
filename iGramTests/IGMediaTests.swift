@@ -46,5 +46,4 @@ class IGMediaTests: XCTestCase {
             XCTFail("Wrong file: media.json")
         }
     }
-
 }

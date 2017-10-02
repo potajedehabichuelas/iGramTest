@@ -30,7 +30,10 @@ class MediaGalleryCollectionViewController: UICollectionViewController, NVActivi
             self.stopLoadingSpinner()
         })
         
-        IGNetworkManager.sharedInstance.getRecentMediaForUser(completion: { mediaArray in
+        IGNetworkManager.sharedInstance.getRecentMediaForUser(completion: { mediaObjects in
+            if let mediaArray = mediaObjects {
+                
+            }
             self.stopLoadingSpinner()
         })
     }
